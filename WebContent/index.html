@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Java runs on Azure, Cool!</title>
+    <script type='text/javascript' src='Scripts/jquery.js'></script>
+</head>
+<script type="text/javascript">
+
+    $(document).ready(queryTwitterService);
+    function queryTwitterService() {
+        $.getJSON('QueueStack', processData);
+    }
+
+    function processData(data) {
+        for (var i in data) {
+        	var value = data[i].value;
+            $('<span>' + value.FromUser + 
+                '</span><span>' + value.Text +
+                '</span><img src="' + value.ProfileImage +
+                '" /><p></p>').appendTo($('#result'));
+        }
+    }
+
+</script>
+<body>
+<h1>Windows Azure for Java</h1>
+    <div id="result"></div>
+   
+	<button onclick="javascript:queryTwitterService();">Query Azure Storage</button>   
+</body>
+</html>
